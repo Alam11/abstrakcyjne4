@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
  * Created by Piotrek on 2016-01-08.
  */
 public class ExampleClass {
+    private NullPointer local;
     private int num;
     private HashSet e;
     public HashSet ex;
@@ -18,6 +19,7 @@ public class ExampleClass {
         num = 0;
         e = null;
         ex = new HashSet();
+        local = new NullPointer();
     }
 
     public void init(){
