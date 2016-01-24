@@ -22,7 +22,7 @@ public class ExampleClass {
         local = new NullPointer();
     }
 
-    public void init(){
+    public void initalize(){
         e = new HashSet();
         l = new LinkedHashMap();
         s = "sdf";

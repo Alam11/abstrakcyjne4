@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.util.Dictionary;
 import java.util.HashSet;
 
 import static org.junit.Assert.*;
@@ -7,44 +8,45 @@ import static org.junit.Assert.*;
 public class ExampleClassTest {
 
     @Test
-    public void isNullBeforeInit() throws Exception {
+    public void fieldsAreNullBeforeInitialization() throws Exception {
         //given
         ExampleClass e = new ExampleClass();
         //when
         //then
-        assertFalse(FieldsInitCheck.areFieldsInitialized(e));
+        assertFalse(FieldsInitializationCheck.everyFieldInitialized(e));
     }
 
     @Test
-    public void isNotNullAfterInic() throws Exception {
+    public void allNonPrimitiveFieldsAreInitialized() throws Exception {
         //given
         ExampleClass e = new ExampleClass();
         //when
-        e.init();
+        e.initalize();
         //then
-        assertTrue(FieldsInitCheck.areFieldsInitialized(e));
+        assertTrue(FieldsInitializationCheck.everyFieldInitialized(e));
     }
 
     @Test
-    public void numOfPrimitiveFields() throws Exception {
+    public void checkNumberOfPrimitiveFields() throws Exception {
         //given
         ExampleClass e = new ExampleClass();
         //when
-        e.init();
+        e.initalize();
         //then
-        assertTrue(FieldsInitCheck.getNumberOfPrimitiveFields(e) == 1);
+        assertTrue(FieldsInitializationCheck.getNumberOfPrimitiveFields(e) == 1);
     }
 
 
     @Test
-    public void printStats() throws Exception {
+    public void gathersProperClassName() throws Exception {
         //given
         ExampleClass e = new ExampleClass();
-        HashSet<Integer> set = new HashSet<>();
+        e.initalize();
         //when
-        e.init();
+        Dictionary d = FieldsInitializationCheck.prepareStatisticsDictionary(e);
         //then
-        FieldsInitCheck.printClassStats(e);
+        assertEquals(d.get("Name"), "ExampleClass");
+        assertEquals(d.get("Number of array fields"), 0);
     }
 
 
